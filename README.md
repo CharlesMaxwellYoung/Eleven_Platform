@@ -1,7 +1,6 @@
 # Eleven_Platform
-![apistatus](https://img.shields.io/github/license/mashape/apistatus.svg)
+[![apistatus](https://img.shields.io/github/license/mashape/apistatus.svg)]()[![Maven metadata URI](https://img.shields.io/maven-metadata/v/http/central.maven.org/maven2/com/google/code/gson/gson/maven-metadata.xml.svg)]()
 
-[![Maven metadata URI](https://img.shields.io/maven-metadata/v/http/central.maven.org/maven2/com/google/code/gson/gson/maven-metadata.xml.svg)]()
 用来制作视频信息集合平台
 
 ### 贡献者规范
