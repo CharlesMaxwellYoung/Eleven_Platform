@@ -3,7 +3,31 @@
 
 用来制作视频信息集合平台
 
-本项目采用SSM构建多模块java项目
+本项目采用SSM构建多模块java项目，建议idea工具进行编译
+
+###本项目结构
+
+```html
+├── .idea
+├── eleven-dao               dao，与数据库交互
+├── eleven-model             model，与数据模型
+├── eleven-service           service，与业务逻辑处理
+├── eleven-web               web，与外部接口
+|	 ├── src
+|    |    ├── main
+|    |    ├── java
+|    |    ├── resources    后端所有配置信息文件
+|    |    └── webapp       web交互
+├── src
+├── CODE_OF_CONDUCT.md        代码行为
+├── CONTRIBUTING.md           贡献者规范
+├── eleven.impl
+├── LICENSE                   开源声明
+├── pom.xml                   maven依赖文件
+└── README.md                 说明文件
+```
+
+
 
 ### 贡献者规范
 [git提交归档和git分支规范](./CONTRIBUTING.md)
