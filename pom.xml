@@ -259,12 +259,12 @@
         <!--<artifactId>sitemesh</artifactId>-->
         <!--<version>3.0.0</version>-->
         <!--</dependency>-->
-        <!--&lt;!&ndash;Shiro&ndash;&gt;-->
-        <!--<dependency>-->
-        <!--<groupId>org.apache.shiro</groupId>-->
-        <!--<artifactId>shiro-core</artifactId>-->
-        <!--<version>1.3.2</version>-->
-        <!--</dependency>-->
+        <!--Shiro-->
+        <dependency>
+        <groupId>org.apache.shiro</groupId>
+        <artifactId>shiro-core</artifactId>
+        <version>1.3.2</version>
+        </dependency>
         <!-- dubbo -->
         <!--<dependency>-->
         <!--<groupId>com.alibaba</groupId>-->
@@ -288,7 +288,7 @@
         <!--<artifactId>zkclient</artifactId>-->
         <!--<version>0.1</version>-->
         <!--</dependency>-->
-        <!--&lt;!&ndash; redis支持 &ndash;&gt;-->
+         <!--redis支持 -->
         <!--<dependency>-->
         <!--<groupId>org.springframework.data</groupId>-->
         <!--<artifactId>spring-data-redis</artifactId>-->
