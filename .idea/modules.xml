@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/eleven.iml" filepath="$PROJECT_DIR$/eleven.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eleven-dao/eleven-dao.iml" filepath="$PROJECT_DIR$/eleven-dao/eleven-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eleven-model/eleven-model.iml" filepath="$PROJECT_DIR$/eleven-model/eleven-model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eleven-service/eleven-service.iml" filepath="$PROJECT_DIR$/eleven-service/eleven-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eleven-web/eleven-web.iml" filepath="$PROJECT_DIR$/eleven-web/eleven-web.iml" />
+    </modules>
+  </component>
+</project>
