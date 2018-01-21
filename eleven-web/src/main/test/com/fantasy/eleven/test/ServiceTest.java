@@ -1,6 +1,5 @@
 package com.fantasy.eleven.test;
 
-import com.fantasy.eleven.dao.UserDao;
 import com.fantasy.eleven.model.UserModel;
 import com.fantasy.eleven.service.UserService;
 import org.junit.Test;

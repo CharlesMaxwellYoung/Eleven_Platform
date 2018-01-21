@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Fantasy on 2018/1/19.
@@ -20,5 +21,17 @@ public class UserServiceImpl implements UserService {
 
     public List<UserModel> findAllStudent(UserModel u) {
         return userDao.select(u);
+    }
+
+    public Set<String> getRolesByUserName(String userName) {
+        return userDao.getRolesByUserName(userName);
+    }
+
+    public Set<String> getPermissionsByUserName(String userName) {
+        return userDao.getPermissionsByUserName(userName);
+    }
+
+    public UserModel getUserByUserName(String userName) {
+        return userDao.getUserByUserName(userName);
     }
 }

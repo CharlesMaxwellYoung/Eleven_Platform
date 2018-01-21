@@ -29,6 +29,7 @@
             <artifactId>eleven-service</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <!--添加对junit的依赖-->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

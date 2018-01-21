@@ -4,7 +4,6 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
             http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
            http://www.springframework.org/schema/context
@@ -15,20 +14,20 @@
            http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
     <!-- jdbc配置 -->
-    <context:property-placeholder location="classpath:config/jdbc.properties" />
+    <context:property-placeholder location="classpath:config/jdbc.properties"/>
 
     <!-- 自动将Service层注入-->
-    <context:component-scan base-package="com.fantasy.eleven.service" />
+    <context:component-scan base-package="com.fantasy.eleven.service"/>
 
 
     <!-- dbcp数据源 -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init"
           destroy-method="close">
         <!--这里如果写成${jdbc.driver}，就会出现加载jdbc驱动失败的问题，暂时不清楚什么原因-->
-        <property name="driverClassName" value="${jdbc.driver}" />
-        <property name="url" value="${jdbc.url}" />
-        <property name="username" value="${jdbc.username}" />
-        <property name="password" value="${jdbc.password}" />
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
 
         <!-- 连接池最大使用连接数 -->
         <property name="maxActive" value="20"/>
@@ -87,4 +86,43 @@
         <!--把事务控制在Service层-->
         <aop:advisor advice-ref="txAdvice" pointcut-ref="pc"/>
     </aop:config>
+
+    <!-- 配置自定义Realm -->
+    <bean id="myRealm" class="com.fantasy.eleven.realm.MyRealm"/>
+
+    <!--  安全管理器
+        Shiro默认会使用Servlet容器的Session,可通过sessionMode属性来指定使用Shiro原生Session
+        即<property name="sessionMode" value="native"/>,详细说明见官方文档
+     -->
+
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="realm" ref="myRealm"/>
+    </bean>
+    <!-- Shiro过滤器 核心-->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <!-- Shiro的核心安全接口,这个属性是必须的 -->
+        <property name="securityManager" ref="securityManager"/>
+        <!-- 身份认证失败，则跳转到登录页面的配置 -->
+        <property name="loginUrl" value="/login.jsp"/>
+        <!-- 权限认证失败，则跳转到指定页面 -->
+        <property name="unauthorizedUrl" value="/nopower.jsp"/>
+        <!-- Shiro连接约束配置,即过滤链的定义 -->
+        <property name="filterChainDefinitions">
+            <value>
+                <!--anon 表示匿名访问，不需要认证以及授权-->
+                /loginAdmin=anon
+                <!--authc表示需要认证 没有进行身份认证是不能进行访问的-->
+                /user/*=roles[teacher]
+                /teacher=perms["user:create"]
+            </value>
+        </property>
+    </bean>
+    <!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+    <!-- 开启Shiro注解 -->
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+          depends-on="lifecycleBeanPostProcessor"/>
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager"/>
+    </bean>
 </beans>
