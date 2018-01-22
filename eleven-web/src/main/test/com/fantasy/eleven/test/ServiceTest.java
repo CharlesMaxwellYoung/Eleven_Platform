@@ -1,6 +1,6 @@
 package com.fantasy.eleven.test;
 
-import com.fantasy.eleven.model.UserModel;
+import com.fantasy.eleven.model.UserDO;
 import com.fantasy.eleven.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,14 +20,14 @@ import java.util.List;
 public class ServiceTest {
     @Resource
     private UserService userService;
+
     @Test
     public void select() throws Exception {
-        UserModel userModel = new UserModel();
-        userModel.setId(new Integer("1"));
-        List<UserModel> userModelList = userService.findAllStudent(null);
-        for (UserModel s : userModelList) {
+        UserDO userDO = new UserDO();
+        userDO.setId(new Integer("1"));
+        List<UserDO> userModelList = userService.findListUser(null);
+        for (UserDO s : userModelList) {
             System.out.println(s.getUserPassword());
         }
-
     }
 }

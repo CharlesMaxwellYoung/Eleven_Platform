@@ -1,6 +1,6 @@
 package com.fantasy.eleven.controller;
 
-import com.fantasy.eleven.model.UserModel;
+import com.fantasy.eleven.model.UserDO;
 import com.fantasy.eleven.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,9 +23,9 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping("/findAll")
-    public List<UserModel> findAllUser(@RequestParam("id") String id) {
-        UserModel userModel = new UserModel();
-        userModel.setId(new Integer(id));
-        return userService.findAllStudent(userModel);
+    public List<UserDO> findAllUser(@RequestParam("id") String id) {
+        UserDO userDO = new UserDO();
+        userDO.setId(new Integer(id));
+        return userService.findListUser(userDO);
     }
 }

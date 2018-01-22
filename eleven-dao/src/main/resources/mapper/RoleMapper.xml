@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fantasy.eleven.dao.RoleDao">
+    <sql id="role_list_field">id,gmt_create,gmt_modified,role_name</sql>
+    <select id="select" resultType="UserDO">
+        SELECT
+        <include refid="role_list_field"/>
+        FROM t_role
+        <trim prefix="WHERE" prefixOverrides="AND">
+            <if test="id!= null and id !='' ">id=#{id}</if>
+        </trim>
+    </select>
+
+    <insert id="insert">
+        INSERT
+        t_role (id,gmt_create,gmt_modified,role_name)
+        VALUES (#{id},CURRENT_TIME,CURRENT_TIME,#{roleName})
+    </insert>
+
+    <update id="update">
+        UPDATE t_role
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="true">gmt_modified=CURRENT_TIME</if>
+            <if test="roleName!=null and roleName!='' and roleName!='null'">,role_name=#{roleName}</if>
+        </trim>
+        WHERE id=#{id} ;
+    </update>
+
+    <delete id="delete">
+        DELETE FROM t_role WHERE id=#{id}
+    </delete>
+</mapper>

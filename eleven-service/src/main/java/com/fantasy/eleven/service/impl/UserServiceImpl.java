@@ -1,6 +1,7 @@
 package com.fantasy.eleven.service.impl;
 
 import com.fantasy.eleven.dao.UserDao;
+import com.fantasy.eleven.model.UserDO;
 import com.fantasy.eleven.model.UserModel;
 import com.fantasy.eleven.service.UserService;
 import org.springframework.stereotype.Service;
@@ -19,8 +20,20 @@ public class UserServiceImpl implements UserService {
     @Resource
     private UserDao userDao;
 
-    public List<UserModel> findAllStudent(UserModel u) {
+    public List<UserDO> findListUser(UserDO u) {
         return userDao.select(u);
+    }
+
+    public Boolean insertUser(UserDO u) {
+        return userDao.insert(u);
+    }
+
+    public Boolean updateUser(UserDO u) {
+        return userDao.update(u);
+    }
+
+    public Boolean deleteUser(UserDO u) {
+        return userDao.delete(u);
     }
 
     public Set<String> getRolesByUserName(String userName) {

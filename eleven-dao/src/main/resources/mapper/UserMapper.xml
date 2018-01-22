@@ -1,26 +1,39 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fantasy.eleven.dao.UserDao">
-    <sql id="field">id,gmt_create,gmt_modified,user_login_name,user_password,user_name</sql>
-    <insert id="insert">
-        INSERT users_list (id,gmt_create,gmt_modified,user_login_name,user_password,user_name) VALUES (#{id},#{gmtCreate},#{gmtModified},#{userLoginName},#{userPassword},#{userName})
-    </insert>
-    <delete id="delete">
-        DELETE FROM users_list WHERE id=#{id}
-    </delete>
-    <update id="update">
-        UPDATE users_list
-        <trim prefix="SET" suffixOverrides=",">
-            <if test="name!= null and name !='' and name != 'null'">name=#{name},</if>
-            <if test="sex!= null ">sex=#{sex},</if>
-            <if test="address!= null and address !='' and address != 'null'">address=#{address}</if>
-        </trim>
-        WHERE id=#{id} ;
-    </update>
-    <select id="select" resultType="UserModel">
-        SELECT * FROM users_list
+    <sql id="user_list_field">id,gmt_create,gmt_modified,user_name,user_password,user_show_name,role_id</sql>
+    <select id="select" resultType="UserDO">
+        SELECT
+        <include refid="user_list_field"/>
+        FROM t_user
         <trim prefix="WHERE" prefixOverrides="AND">
             <if test="id!= null and id !='' ">id=#{id}</if>
         </trim>
     </select>
+
+    <insert id="insert">
+        INSERT
+        t_user (id,gmt_create,gmt_modified,user_name,user_password,user_show_name,role_id)
+        VALUES (#{id},CURRENT_TIME,CURRENT_TIME,#{userName},#{userPassword},#{userShowName},#{roleId})
+    </insert>
+
+    <update id="update">
+        UPDATE t_user
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="true">gmt_modified = CURRENT_TIME</if>
+            <if test="userName!=null and userName!='' and userName!='null'">,user_name=#{userName}</if>
+            <if test="userPassword!=null and userPassword!='' and userPassword!='null'">
+                ,user_password=#{userPassword}
+            </if>
+            <if test="userShowName!=null and userShowName!='' and userShowName!='null'">
+                ,user_show_name=#{userShowName}
+            </if>
+            <if test="roleId!=null and roleId!='' and roleId!='null'">,role_id=#{roleId}</if>
+        </trim>
+        WHERE id=#{id} ;
+    </update>
+
+    <delete id="delete">
+        DELETE FROM t_user WHERE id=#{id}
+    </delete>
 </mapper>

@@ -1,4 +1,4 @@
-package com.fantasy.eleven.dao;
+package com.fantasy.eleven.dao.base;
 
 import java.util.List;
 

@@ -12,11 +12,11 @@
 ├── eleven-model             model，与数据模型
 ├── eleven-service           service，与业务逻辑处理
 ├── eleven-web               web，与外部接口
-|	 ├── src
-|    |    ├── main
-|    |    ├── java
-|    |    ├── resources    后端所有配置信息文件
-|    |    └── webapp       web交互
+|    ├── src
+|         ├── main
+|         ├── java
+|         ├── resources    后端所有配置信息文件
+|         └── webapp       web交互
 ├── src
 ├── CODE_OF_CONDUCT.md        代码行为
 ├── CONTRIBUTING.md           贡献者规范

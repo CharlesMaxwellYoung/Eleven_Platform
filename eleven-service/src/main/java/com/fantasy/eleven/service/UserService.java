@@ -1,5 +1,6 @@
 package com.fantasy.eleven.service;
 
+import com.fantasy.eleven.model.UserDO;
 import com.fantasy.eleven.model.UserModel;
 
 import java.util.List;
@@ -12,12 +13,36 @@ import java.util.Set;
  */
 public interface UserService {
     /**
-     * Find all student list.
+     * Find list user list.
      *
      * @param u the u
      * @return the list
      */
-    List<UserModel> findAllStudent(UserModel u);
+    List<UserDO> findListUser(UserDO u);
+
+    /**
+     * Insert user boolean.
+     *
+     * @param u the u
+     * @return the boolean
+     */
+    Boolean insertUser(UserDO u);
+
+    /**
+     * Update user boolean.
+     *
+     * @param u the u
+     * @return the boolean
+     */
+    Boolean updateUser(UserDO u);
+
+    /**
+     * Delete user boolean.
+     *
+     * @param u the u
+     * @return the boolean
+     */
+    Boolean deleteUser(UserDO u);
 
     /**
      * Gets roles by user name.
