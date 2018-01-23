@@ -4,6 +4,7 @@
 用来制作视频信息集合平台
 
 本项目采用SSM构建多模块java项目，建议intellij idea工具进行编译,安装[![guidelines](https://img.shields.io/badge/intellij%20plugin-alibaba%20java%20coding%20guidelines-red.svg)]()插件
+项目中命名规范参照alibaba coding guideline
 ### 本项目结构
 
 ```html

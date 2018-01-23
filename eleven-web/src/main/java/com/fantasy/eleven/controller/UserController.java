@@ -16,16 +16,43 @@ import java.util.List;
  * @author Fantasy
  */
 @Controller
-@RequestMapping("/user")
+@RequestMapping("user")
 public class UserController {
     @Resource
     private UserService userService;
 
+    /**
+     * Find all user list.
+     *
+     * @param id the id
+     * @return the list
+     */
     @ResponseBody
     @RequestMapping("/findAll")
     public List<UserDO> findAllUser(@RequestParam("id") String id) {
         UserDO userDO = new UserDO();
         userDO.setId(new Integer(id));
         return userService.findListUser(userDO);
+    }
+
+
+    /**
+     * 注册用户
+     *
+     * @return the string
+     */
+    @RequestMapping("/signUp")
+    public String signUpUser() {
+        return "SignUp";
+    }
+
+    /**
+     * 进入登录页面
+     *
+     * @return the string
+     */
+    @RequestMapping("/login")
+    public String userLogin() {
+        return "Login";
     }
 }
