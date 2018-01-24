@@ -17,13 +17,13 @@
     <mvc:annotation-driven/>
 
     <!-- 静态资源 -->
-    <mvc:resources location="/WEB-INF/js/" mapping="/js/**"/>
-    <mvc:resources location="/WEB-INF/css/" mapping="/css/**"/>
-    <mvc:resources location="/WEB-INF/image/" mapping="/image/**"/>
+    <mvc:resources location="/WEB-INF/src/scripts/" mapping="/scripts/**"/>
+    <mvc:resources location="/WEB-INF/assets/css/" mapping="/assets/css/**"/>
+    <mvc:resources location="/WEB-INF/assets/image/" mapping="/assets/image/**"/>
 
     <!-- 视图解析器 -->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="prefix" value="/WEB-INF/src/component/"/>
         <property name="suffix" value=".jsp"/>
         <property name="order" value="2"/>
     </bean>

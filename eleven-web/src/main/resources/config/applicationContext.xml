@@ -103,7 +103,7 @@
         <!-- Shiro的核心安全接口,这个属性是必须的 -->
         <property name="securityManager" ref="securityManager"/>
         <!-- 身份认证失败，则跳转到登录页面的配置 -->
-        <property name="loginUrl" value="/user/login.do"/>
+        <property name="loginUrl" value="/user/login"/>
         <!-- 权限认证失败，则跳转到指定页面 -->
         <property name="unauthorizedUrl" value="/nopower.jsp"/>
         <!-- Shiro连接约束配置,即过滤链的定义 -->
@@ -112,7 +112,7 @@
                 <!--anon 表示匿名访问，不需要认证以及授权-->
                 /loginAdmin=anon
                 <!--authc表示需要认证 没有进行身份认证是不能进行访问的-->
-                /user/findAll.do=roles[teacher]
+
                 /teacher=perms["user:create"]
             </value>
         </property>
