@@ -8,6 +8,7 @@
         FROM t_user
         <trim prefix="WHERE" prefixOverrides="AND">
             <if test="id!= null and id !='' ">id=#{id}</if>
+            <if test="userName!= null and userName !=''and userName!='null' ">user_name=#{userName}</if>
         </trim>
     </select>
 

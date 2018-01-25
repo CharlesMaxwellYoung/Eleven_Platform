@@ -1,5 +1,6 @@
 package com.fantasy.eleven.realm;
 
+import com.fantasy.eleven.model.UserDO;
 import com.fantasy.eleven.model.UserModel;
 import com.fantasy.eleven.service.UserService;
 import org.apache.log4j.Logger;
@@ -11,8 +12,11 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -40,11 +44,16 @@ public class MyRealm extends AuthorizingRealm {
     }
 
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
-        String userName = authenticationToken.getPrincipal().toString();
-        UserModel userModel = userService.getUserByUserName(userName);
-        if (userModel != null) {
-            AuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(userModel.getUserName(), userModel.getUserPassword(), "a");
-            log.debug("[doGetAuthenticationInfo] [authenticationInfo]" + authenticationInfo.toString());
+        String userName = (String) authenticationToken.getPrincipal();
+        UserDO userDO = new UserDO();
+        userDO.setUserName(userName);
+        List<UserDO> userDOList = userService.findListUser(userDO);
+        UserDO userFirstModel = userDOList.get(0);
+        if (userFirstModel != null) {
+            ByteSource salt = ByteSource.Util.bytes(userFirstModel.getUserName());
+
+            AuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(userFirstModel.getUserName(), userFirstModel.getUserPassword(), this.getName());
+            log.debug("[doGetAuthenticationInfo] [authenticationInfo] " + authenticationInfo.toString());
             return authenticationInfo;
         }
         return null;
