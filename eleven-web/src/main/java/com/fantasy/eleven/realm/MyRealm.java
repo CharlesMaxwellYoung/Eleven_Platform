@@ -51,8 +51,7 @@ public class MyRealm extends AuthorizingRealm {
         UserDO userFirstModel = userDOList.get(0);
         if (userFirstModel != null) {
             ByteSource salt = ByteSource.Util.bytes(userFirstModel.getUserName());
-
-            AuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(userFirstModel.getUserName(), userFirstModel.getUserPassword(), this.getName());
+            AuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(userFirstModel.getUserName(), userFirstModel.getUserPassword(), salt, this.getName());
             log.debug("[doGetAuthenticationInfo] [authenticationInfo] " + authenticationInfo.toString());
             return authenticationInfo;
         }

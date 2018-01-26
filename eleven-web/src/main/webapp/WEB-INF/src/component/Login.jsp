@@ -53,7 +53,7 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="http://vuejs.org/js/vue.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
 <script type="text/javascript" src="http://unpkg.com/iview/dist/iview.min.js"></script>
 <script type="text/javascript" src="<%=basePath%>scripts/login.js"></script>
 </body>

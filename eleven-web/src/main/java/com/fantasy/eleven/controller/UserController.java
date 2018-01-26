@@ -30,8 +30,6 @@ public class UserController {
     private UserService userService;
 
     /**
-     * Find all user list.
-     *
      * @param id the id
      * @return the list
      */
@@ -94,7 +92,7 @@ public class UserController {
      */
     @RequestMapping("/userSignUp")
     public String userSignUp(UserDO userDO) {
-        if (false) {
+        if (userDO != null) {
             ByteSource salt = ByteSource.Util.bytes(userDO.getUserName());
             SimpleHash simpleHashPassword = new SimpleHash("md5", userDO.getUserPassword(), salt, 2);
             userDO.setUserPassword(simpleHashPassword.toString());

@@ -21,7 +21,6 @@ new Vue({
     },
     methods: {
         handleSubmit: function () {
-            var self = this;
             this.$refs.loginForm.validate(function (valid) {
                 if (valid) {
 
