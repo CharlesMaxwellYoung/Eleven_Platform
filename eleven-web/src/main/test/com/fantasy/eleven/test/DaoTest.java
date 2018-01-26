@@ -81,4 +81,14 @@ public class DaoTest {
         userDO.setId(1);
         System.out.println(("[DaoTest] [update]" + userDao.delete(userDO)));
     }
+
+    /**
+     * Count.
+     *
+     * @throws Exception the exception
+     */
+    @Test
+    public void count() throws Exception {
+        System.out.println(("[DaoTest] [update]" + userDao.userCount()));
+    }
 }

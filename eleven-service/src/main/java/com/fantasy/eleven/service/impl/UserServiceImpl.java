@@ -47,4 +47,8 @@ public class UserServiceImpl implements UserService {
     public UserModel getUserByUserName(String userName) {
         return userDao.getUserByUserName(userName);
     }
+
+    public Integer userCount() {
+        return userDao.userCount();
+    }
 }

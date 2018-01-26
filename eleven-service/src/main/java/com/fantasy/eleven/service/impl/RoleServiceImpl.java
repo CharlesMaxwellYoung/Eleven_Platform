@@ -33,4 +33,8 @@ public class RoleServiceImpl implements RoleService {
     public Boolean deleteRole(RoleDO u) {
         return roleDao.delete(u);
     }
+
+    public Integer roleCount() {
+        return roleDao.roleCount();
+    }
 }

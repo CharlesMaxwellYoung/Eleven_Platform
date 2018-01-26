@@ -11,4 +11,10 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface PermissionDao extends BaseDao<PermissionDO> {
+    /**
+     * Permission count integer.
+     *
+     * @return the integer
+     */
+    Integer permissionCount();
 }

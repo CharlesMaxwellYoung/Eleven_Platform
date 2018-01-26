@@ -37,4 +37,12 @@ public interface UserDao extends BaseDao<UserDO> {
      * @return the permissions by user name
      */
     Set<String> getPermissionsByUserName(String userName);
+
+
+    /**
+     * User count integer.
+     *
+     * @return the integer
+     */
+    Integer userCount();
 }

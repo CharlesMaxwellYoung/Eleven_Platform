@@ -67,4 +67,12 @@ public interface UserService {
      * @return the user by user name
      */
     UserModel getUserByUserName(String userName);
+
+
+    /**
+     * User count integer.
+     *
+     * @return the integer
+     */
+    Integer userCount();
 }

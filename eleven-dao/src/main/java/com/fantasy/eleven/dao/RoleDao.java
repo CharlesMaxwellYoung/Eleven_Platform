@@ -11,4 +11,10 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface RoleDao extends BaseDao<RoleDO> {
+    /**
+     * Role count integer.
+     *
+     * @return the integer
+     */
+    Integer roleCount();
 }

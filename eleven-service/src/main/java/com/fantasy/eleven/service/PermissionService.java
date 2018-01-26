@@ -41,4 +41,11 @@ public interface PermissionService {
      * @return the boolean
      */
     Boolean deletePermission(PermissionDO u);
+
+    /**
+     * Permission count integer.
+     *
+     * @return the integer
+     */
+    Integer permissionCount();
 }

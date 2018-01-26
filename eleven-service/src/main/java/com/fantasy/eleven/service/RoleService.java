@@ -41,4 +41,11 @@ public interface RoleService {
      * @return the boolean
      */
     Boolean deleteRole(RoleDO u);
+
+    /**
+     * Role count integer.
+     *
+     * @return the integer
+     */
+    Integer roleCount();
 }

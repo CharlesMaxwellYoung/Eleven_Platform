@@ -10,7 +10,9 @@
             <if test="id!= null and id !='' ">id=#{id}</if>
         </trim>
     </select>
-
+    <select id="permissionCount">
+        SELECT COUNT(id) FROM t_permission
+    </select>
     <insert id="insert">
         INSERT
         t_permission (id,gmt_create,gmt_modified,permission_name,role_id)
@@ -21,7 +23,9 @@
         UPDATE t_permission
         <trim prefix="SET" suffixOverrides=",">
             <if test="true">gmt_modified=CURRENT_TIME</if>
-            <if test="permissionName!=null and permissionName!='' and permissionName!='null'">,permission_name=#{permissionName}</if>
+            <if test="permissionName!=null and permissionName!='' and permissionName!='null'">
+                ,permission_name=#{permissionName}
+            </if>
             <if test="roleId!=null and roleId!='' and roleId!='null'">,role_id=#{roleId}</if>
         </trim>
         WHERE id=#{id} ;

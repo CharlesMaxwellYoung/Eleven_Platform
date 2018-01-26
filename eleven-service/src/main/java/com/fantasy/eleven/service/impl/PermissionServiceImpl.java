@@ -33,4 +33,9 @@ public class PermissionServiceImpl implements PermissionService {
     public Boolean deletePermission(PermissionDO u) {
         return permissionDao.delete(u);
     }
+
+    public Integer permissionCount() {
+        return permissionDao.permissionCount();
+    }
+
 }

@@ -11,6 +11,10 @@
         </trim>
     </select>
 
+    <select id="roleCount" resultType="java.lang.Integer">
+        SELECT COUNT(id) FROM t_role
+    </select>
+
     <insert id="insert">
         INSERT
         t_role (id,gmt_create,gmt_modified,role_name)
