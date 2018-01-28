@@ -53,4 +53,15 @@ public class PermissionDO {
     public void setGmtModified(Date gmtModified) {
         this.gmtModified = gmtModified;
     }
+
+    @Override
+    public String toString() {
+        return "PermissionDO{" +
+                "id=" + id +
+                ", permissionName='" + permissionName + '\'' +
+                ", roleId=" + roleId +
+                ", gmtCreate=" + gmtCreate +
+                ", gmtModified=" + gmtModified +
+                '}';
+    }
 }

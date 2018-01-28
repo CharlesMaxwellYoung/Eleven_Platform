@@ -2,6 +2,7 @@ package com.fantasy.eleven.controller;
 
 import com.fantasy.eleven.model.UserDO;
 import com.fantasy.eleven.service.UserService;
+import com.fantasy.eleven.vo.JsonResult;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -63,25 +64,38 @@ public class UserController {
     }
 
     /**
-     * User sign in by name and password.
+     * 用户的
      *
      * @param userDO the user do
      */
+    @ResponseBody
     @RequestMapping("/userLogin")
-    public void userSignInByNameAndPassword(UserDO userDO) {
+    public Object userSignInByNameAndPassword(UserDO userDO) {
         Subject userSubject = SecurityUtils.getSubject();
         UsernamePasswordToken uToken = new UsernamePasswordToken(userDO.getUserName(), userDO.getUserPassword());
+        JsonResult<String> jsonResult = new JsonResult<String>();
         try {
             userSubject.login(uToken);
         } catch (UnknownAccountException e) {
-            log.debug("用户名不存在");
+            jsonResult.setSuccess(false);
+            jsonResult.setError("用户名不存在");
+            return jsonResult;
         } catch (IncorrectCredentialsException e) {
-            log.debug("用户密码不正确");
+            jsonResult.setSuccess(false);
+            jsonResult.setError("用户密码不正确");
+            return jsonResult;
         } catch (LockedAccountException e) {
-            log.debug("用户被锁");
+            jsonResult.setSuccess(false);
+            jsonResult.setError("用户被锁");
+            return jsonResult;
         } catch (AuthenticationException e) {
-            log.debug("其他错误");
+            jsonResult.setSuccess(false);
+            jsonResult.setError("其他错误");
+            return jsonResult;
         }
+        jsonResult.setSuccess(true);
+        jsonResult.setResult("用户登录成功");
+        return jsonResult;
     }
 
 
