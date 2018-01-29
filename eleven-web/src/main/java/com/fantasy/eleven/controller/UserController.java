@@ -10,9 +10,7 @@ import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -69,8 +67,8 @@ public class UserController {
      * @param userDO the user do
      */
     @ResponseBody
-    @RequestMapping("/userLogin")
-    public Object userSignInByNameAndPassword(UserDO userDO) {
+    @RequestMapping(value = "/userLogin")
+    public Object userSignInByNameAndPassword(@RequestBody UserDO userDO) {
         Subject userSubject = SecurityUtils.getSubject();
         UsernamePasswordToken uToken = new UsernamePasswordToken(userDO.getUserName(), userDO.getUserPassword());
         JsonResult<String> jsonResult = new JsonResult<String>();
