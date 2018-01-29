@@ -69,9 +69,14 @@ public class UserController {
     @ResponseBody
     @RequestMapping(value = "/userLogin")
     public Object userSignInByNameAndPassword(@RequestBody UserDO userDO) {
+        JsonResult<String> jsonResult = new JsonResult<String>();
+        if (userDO.getUserName() == null || userDO.getUserPassword() == null) {
+            jsonResult.setSuccess(false);
+            jsonResult.setError("用户名或者密码");
+            return jsonResult;
+        }
         Subject userSubject = SecurityUtils.getSubject();
         UsernamePasswordToken uToken = new UsernamePasswordToken(userDO.getUserName(), userDO.getUserPassword());
-        JsonResult<String> jsonResult = new JsonResult<String>();
         try {
             userSubject.login(uToken);
         } catch (UnknownAccountException e) {
@@ -103,7 +108,7 @@ public class UserController {
      * @param userDO the user do
      */
     @RequestMapping("/userSignUp")
-    public String userSignUp(UserDO userDO) {
+    public String userSignUp(@RequestBody UserDO userDO) {
         if (userDO != null) {
             ByteSource salt = ByteSource.Util.bytes(userDO.getUserName());
             SimpleHash simpleHashPassword = new SimpleHash("md5", userDO.getUserPassword(), salt, 2);
