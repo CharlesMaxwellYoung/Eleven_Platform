@@ -1,6 +1,8 @@
 package com.fantasy.eleven.controller;
 
 import com.fantasy.eleven.model.UserDO;
+import com.fantasy.eleven.service.PermissionService;
+import com.fantasy.eleven.service.RoleService;
 import com.fantasy.eleven.service.UserService;
 import com.fantasy.eleven.vo.JsonResult;
 import org.apache.log4j.Logger;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,8 +30,14 @@ public class UserController {
     private static Logger log = Logger.getLogger(UserController.class);
     @Resource
     private UserService userService;
+    @Resource
+    private RoleService roleService;
+    @Resource
+    private PermissionService permissionService;
 
     /**
+     * Find all user list.
+     *
      * @param id the id
      * @return the list
      */
@@ -65,6 +74,7 @@ public class UserController {
      * 用户的
      *
      * @param userDO the user do
+     * @return the object
      */
     @ResponseBody
     @RequestMapping(value = "/userLogin")
@@ -106,6 +116,7 @@ public class UserController {
      * 用户注册
      *
      * @param userDO the user do
+     * @return the string
      */
     @RequestMapping("/userSignUp")
     public String userSignUp(@RequestBody UserDO userDO) {
@@ -116,5 +127,30 @@ public class UserController {
         }
         Boolean isInsertUser = userService.insertUser(userDO);
         return isInsertUser ? "Login" : "SignUp";
+    }
+
+    /**
+     * 获得所有用户角色权限的所有个数
+     *
+     * @return the object
+     */
+    @ResponseBody
+    @RequestMapping("/userRolePermsCounts")
+    public Object userRolePermsCounts() {
+        JsonResult<List<Integer>> jsonResult = new JsonResult<List<Integer>>();
+        List<Integer> userRolePerms = new ArrayList<Integer>();
+        jsonResult.setSuccess(true);
+
+        int userCount = userService.userCount();
+        int roleCount = roleService.roleCount();
+        int permissionCount = permissionService.permissionCount();
+        log.debug("[userRolePermsCounts] [userCount]: " + userCount);
+        userRolePerms.add(userCount);
+        log.debug("[userRolePermsCounts] [roleCount]: " + roleCount);
+        userRolePerms.add(roleCount);
+        log.debug("[userRolePermsCounts] [permissionCount]: " + permissionCount);
+        userRolePerms.add(permissionCount);
+        jsonResult.setResult(userRolePerms);
+        return jsonResult;
     }
 }

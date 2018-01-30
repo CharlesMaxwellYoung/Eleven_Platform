@@ -10,7 +10,7 @@
             <if test="id!= null and id !='' ">id=#{id}</if>
         </trim>
     </select>
-    <select id="permissionCount">
+    <select id="permissionCount" resultType="java.lang.Integer">
         SELECT COUNT(id) FROM t_permission
     </select>
     <insert id="insert">
