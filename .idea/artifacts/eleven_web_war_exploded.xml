@@ -7,6 +7,9 @@
           <element id="module-output" name="eleven-web" />
         </element>
         <element id="directory" name="lib">
+          <element id="archive" name="eleven-common-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="eleven-common" />
+          </element>
           <element id="archive" name="eleven-model-1.0-SNAPSHOT.jar">
             <element id="module-output" name="eleven-model" />
           </element>

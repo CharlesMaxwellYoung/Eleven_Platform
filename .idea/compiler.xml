@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="eleven-common" />
         <module name="eleven-dao" />
         <module name="eleven-model" />
         <module name="eleven-service" />
@@ -14,9 +15,11 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="eleven" target="1.5" />
+      <module name="eleven-common" target="1.5" />
       <module name="eleven-dao" target="1.5" />
       <module name="eleven-model" target="1.5" />
       <module name="eleven-service" target="1.5" />
+      <module name="eleven-utils" target="1.5" />
       <module name="eleven-web" target="1.5" />
     </bytecodeTargetLevel>
   </component>

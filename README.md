@@ -9,6 +9,7 @@
 
 ```html
 ├── .idea
+├── eleven-common            common，通用模块，用于工具类，枚举类集合
 ├── eleven-dao               dao，与数据库交互
 ├── eleven-model             model，与数据模型
 ├── eleven-service           service，与业务逻辑处理

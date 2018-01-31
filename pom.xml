@@ -13,6 +13,7 @@
         <module>eleven-service</module>
         <module>eleven-model</module>
         <module>eleven-web</module>
+        <module>eleven-common</module>
     </modules>
 
     <!--添加依赖-->

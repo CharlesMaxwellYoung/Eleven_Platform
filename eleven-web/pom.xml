@@ -11,6 +11,12 @@
     <name>eleven-web Maven Webapp</name>
     <url>http://maven.apache.org</url>
     <dependencies>
+        <!--添加对eleven-utils的依赖-->
+        <dependency>
+            <groupId>com.fantasy</groupId>
+            <artifactId>eleven-common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
         <!--添加对eleven-model的依赖-->
         <dependency>
             <groupId>com.fantasy</groupId>

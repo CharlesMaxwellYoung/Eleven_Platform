@@ -4,7 +4,9 @@ import com.fantasy.eleven.model.UserDO;
 import com.fantasy.eleven.service.PermissionService;
 import com.fantasy.eleven.service.RoleService;
 import com.fantasy.eleven.service.UserService;
+import com.fantasy.eleven.utils.SystemUtils;
 import com.fantasy.eleven.vo.JsonResult;
+import com.fantasy.eleven.vo.UserSuccessVO;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -15,7 +17,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -78,7 +83,7 @@ public class UserController {
      */
     @ResponseBody
     @RequestMapping(value = "/userLogin")
-    public Object userSignInByNameAndPassword(@RequestBody UserDO userDO) {
+    public JsonResult userSignInByNameAndPassword(@RequestBody UserDO userDO) {
         JsonResult<String> jsonResult = new JsonResult<String>();
         if (userDO.getUserName() == null || userDO.getUserPassword() == null) {
             jsonResult.setSuccess(false);
@@ -106,9 +111,18 @@ public class UserController {
             jsonResult.setError("其他错误");
             return jsonResult;
         }
-        jsonResult.setSuccess(true);
-        jsonResult.setResult("用户登录成功");
-        return jsonResult;
+        /**
+         * 登录成功封装用户信息
+         */
+        UserSuccessVO userSuccessVO = new UserSuccessVO();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        userSuccessVO.setUserName(userDO.getUserName());
+        userSuccessVO.setSysDate(df.format(new Date()));
+        JsonResult<UserSuccessVO> objectJsonResult = new JsonResult<UserSuccessVO>();
+        objectJsonResult.setSuccess(true);
+        objectJsonResult.setResult(userSuccessVO);
+
+        return objectJsonResult;
     }
 
 
@@ -135,12 +149,12 @@ public class UserController {
      * @return the object
      */
     @ResponseBody
-    @RequestMapping("/userRolePermsCounts")
-    public Object userRolePermsCounts() {
-        JsonResult<List<Integer>> jsonResult = new JsonResult<List<Integer>>();
+    @RequestMapping("/userNormalInfo")
+    public JsonResult userRolePermsCounts(HttpServletRequest request) {
+        JsonResult<UserSuccessVO> jsonResult = new JsonResult<UserSuccessVO>();
         List<Integer> userRolePerms = new ArrayList<Integer>();
+        UserSuccessVO userSuccessVO = new UserSuccessVO();
         jsonResult.setSuccess(true);
-
         int userCount = userService.userCount();
         int roleCount = roleService.roleCount();
         int permissionCount = permissionService.permissionCount();
@@ -150,7 +164,12 @@ public class UserController {
         userRolePerms.add(roleCount);
         log.debug("[userRolePermsCounts] [permissionCount]: " + permissionCount);
         userRolePerms.add(permissionCount);
-        jsonResult.setResult(userRolePerms);
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        userSuccessVO.setSysDate(df.format(new Date()));
+        log.debug("[userRolePermsCounts] [setSysDate]: " + df.format(new Date()));
+        userSuccessVO.setIpAddress(SystemUtils.getSystemIpAddress(request));
+        userSuccessVO.setUserRolePermsCounts(userRolePerms);
+        jsonResult.setResult(userSuccessVO);
         return jsonResult;
     }
 }

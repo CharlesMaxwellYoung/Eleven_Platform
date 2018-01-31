@@ -30,6 +30,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="eleven-common" />
     <orderEntry type="module" module-name="eleven-model" />
     <orderEntry type="module" module-name="eleven-dao" />
     <orderEntry type="module" module-name="eleven-service" />
