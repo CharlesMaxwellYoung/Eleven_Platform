@@ -125,6 +125,35 @@ public class UserController {
         return objectJsonResult;
     }
 
+    /**
+     * User sign out json result.
+     *
+     * @return the json result
+     */
+    @ResponseBody
+    @RequestMapping("/userLoginOut")
+    public JsonResult userSignOut() {
+        JsonResult<String> jsonResult = new JsonResult<String>();
+        Subject currentUser = SecurityUtils.getSubject();
+        currentUser.logout();
+        jsonResult.setSuccess(true);
+        jsonResult.setResult("注销成功");
+        return jsonResult;
+    }
+
+    @ResponseBody
+    @RequestMapping("/getUsers")
+    public JsonResult<List<UserDO>> getUsers(String id) {
+        JsonResult<List<UserDO>> jsonResult = new JsonResult<List<UserDO>>();
+        UserDO userDO = new UserDO();
+        if (id != null) {
+            userDO.setId(new Integer(id));
+        }
+        jsonResult.setSuccess(true);
+        jsonResult.setResult(userService.findListUser(userDO));
+        return jsonResult;
+    }
+
 
     /**
      * 用户注册
@@ -146,6 +175,7 @@ public class UserController {
     /**
      * 获得所有用户角色权限的所有个数
      *
+     * @param request the request
      * @return the object
      */
     @ResponseBody
