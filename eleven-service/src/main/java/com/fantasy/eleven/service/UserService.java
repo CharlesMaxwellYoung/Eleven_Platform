@@ -1,7 +1,6 @@
 package com.fantasy.eleven.service;
 
 import com.fantasy.eleven.model.UserDO;
-import com.fantasy.eleven.model.UserModel;
 
 import java.util.List;
 import java.util.Set;
@@ -59,15 +58,6 @@ public interface UserService {
      * @return the permissions by user name
      */
     Set<String> getPermissionsByUserName(String userName);
-
-    /**
-     * Gets user by user name.
-     *
-     * @param userName the user name
-     * @return the user by user name
-     */
-    UserModel getUserByUserName(String userName);
-
 
     /**
      * User count integer.

@@ -41,21 +41,6 @@ public class UserController {
     private PermissionService permissionService;
 
     /**
-     * Find all user list.
-     *
-     * @param id the id
-     * @return the list
-     */
-    @ResponseBody
-    @RequestMapping("/findAll")
-    public List<UserDO> findAllUser(@RequestParam("id") String id) {
-        UserDO userDO = new UserDO();
-        userDO.setId(new Integer(id));
-        return userService.findListUser(userDO);
-    }
-
-
-    /**
      * 注册用户
      *
      * @return the string
@@ -142,7 +127,7 @@ public class UserController {
     }
 
     @ResponseBody
-    @RequestMapping("/getUsers")
+    @RequestMapping("/getUser")
     public JsonResult<List<UserDO>> getUsers(String id) {
         JsonResult<List<UserDO>> jsonResult = new JsonResult<List<UserDO>>();
         UserDO userDO = new UserDO();

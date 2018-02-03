@@ -1,7 +1,6 @@
 package com.fantasy.eleven.realm;
 
 import com.fantasy.eleven.model.UserDO;
-import com.fantasy.eleven.model.UserModel;
 import com.fantasy.eleven.service.UserService;
 import org.apache.log4j.Logger;
 import org.apache.shiro.authc.AuthenticationException;
@@ -15,7 +14,6 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 

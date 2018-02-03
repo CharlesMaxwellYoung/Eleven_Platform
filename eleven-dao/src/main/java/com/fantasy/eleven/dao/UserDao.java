@@ -2,7 +2,6 @@ package com.fantasy.eleven.dao;
 
 import com.fantasy.eleven.dao.base.BaseDao;
 import com.fantasy.eleven.model.UserDO;
-import com.fantasy.eleven.model.UserModel;
 import org.springframework.stereotype.Repository;
 
 import java.util.Set;
@@ -14,14 +13,6 @@ import java.util.Set;
  */
 @Repository
 public interface UserDao extends BaseDao<UserDO> {
-    /**
-     * Gets user by user name.
-     *
-     * @param userName the user name
-     * @return the user by user name
-     */
-    UserModel getUserByUserName(String userName);
-
     /**
      * Gets roles by user name.
      *
