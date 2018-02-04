@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fantasy.eleven.dao.UserDao">
-    <sql id="user_list_field">id,gmt_create,gmt_modified,user_name,user_password,user_show_name,role_id</sql>
+    <sql id="user_list_field">id,gmt_create,gmt_modified,user_name,user_password,user_show_name,role_id,user_desc</sql>
     <select id="select" resultType="UserDO">
         SELECT
         <include refid="user_list_field"/>
@@ -18,8 +18,8 @@
 
     <insert id="insert">
         INSERT
-        t_user (id,gmt_create,gmt_modified,user_name,user_password,user_show_name,role_id)
-        VALUES (#{id},CURRENT_TIME,CURRENT_TIME,#{userName},#{userPassword},#{userShowName},#{roleId})
+        t_user (id,gmt_create,gmt_modified,user_name,user_password,user_show_name,role_id,user_desc)
+        VALUES (#{id},CURRENT_TIME,CURRENT_TIME,#{userName},#{userPassword},#{userShowName},#{roleId},#{userDesc})
     </insert>
 
     <update id="update">
@@ -33,6 +33,7 @@
             <if test="userShowName!=null and userShowName!='' and userShowName!='null'">
                 ,user_show_name=#{userShowName}
             </if>
+            <if test="userDesc!=null and userDesc!='' and userDesc!='null'">,user_desc=#{userDesc}</if>
             <if test="roleId!=null and roleId!='' and roleId!='null'">,role_id=#{roleId}</if>
         </trim>
         WHERE id=#{id} ;

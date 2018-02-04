@@ -15,6 +15,7 @@ public class UserDO {
     private Integer roleId;
     private Date gmtCreate;
     private Date gmtModified;
+    private String userDesc;
 
     public Integer getId() {
         return id;
@@ -72,6 +73,14 @@ public class UserDO {
         this.gmtModified = gmtModified;
     }
 
+    public String getUserDesc() {
+        return userDesc;
+    }
+
+    public void setUserDesc(String userDesc) {
+        this.userDesc = userDesc;
+    }
+
     @Override
     public String toString() {
         return "UserDO{" +
@@ -82,6 +91,8 @@ public class UserDO {
                 ", roleId=" + roleId +
                 ", gmtCreate=" + gmtCreate +
                 ", gmtModified=" + gmtModified +
+                ", userDesc='" + userDesc + '\'' +
                 '}';
     }
+
 }

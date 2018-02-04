@@ -1,5 +1,6 @@
 package com.fantasy.eleven.controller;
 
+import com.fantasy.eleven.basecontroller.BaseOperationController;
 import com.fantasy.eleven.model.UserDO;
 import com.fantasy.eleven.service.PermissionService;
 import com.fantasy.eleven.service.RoleService;
@@ -30,8 +31,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("user")
-public class UserController {
-
+public class UserController implements BaseOperationController<UserDO> {
     private static Logger log = Logger.getLogger(UserController.class);
     @Resource
     private UserService userService;
@@ -40,28 +40,82 @@ public class UserController {
     @Resource
     private PermissionService permissionService;
 
-    /**
-     * 注册用户
-     *
-     * @return the string
-     */
-    @RequestMapping("/signUp")
-    public String signUpUser() {
-        return "SignUp";
+
+    @ResponseBody
+    @RequestMapping("/getUser")
+    public JsonResult<List<UserDO>> select(String userId) {
+        JsonResult<List<UserDO>> jsonResult = new JsonResult<List<UserDO>>();
+        UserDO userDO = new UserDO();
+        if (userId != null) {
+            userDO.setId(new Integer(userId));
+        }
+        List<UserDO> userDOList = userService.findListUser(userDO);
+        jsonResult.setSuccess(true);
+        jsonResult.setResult(userDOList);
+        return jsonResult;
+    }
+
+    @ResponseBody
+    @RequestMapping("/addUser")
+    public JsonResult<String> insert(@RequestBody UserDO userDO) {
+        JsonResult<String> jsonResult = new JsonResult<String>();
+        List<UserDO> userDOList = userService.findListUser(userDO);
+        Boolean isAddUser = false;
+        if (userDO != null) {
+            ByteSource salt = ByteSource.Util.bytes(userDO.getUserName());
+            SimpleHash simpleHashPassword = new SimpleHash("md5", userDO.getUserPassword(), salt, 2);
+            userDO.setUserPassword(simpleHashPassword.toString());
+        }
+        if (userDOList.size() > 0) {
+            jsonResult.setSuccess(false);
+            jsonResult.setError("用户已经存在");
+            return jsonResult;
+        } else if (userService.insertUser(userDO)) {
+            isAddUser = true;
+            jsonResult.setSuccess(true);
+            jsonResult.setResult("用户添加成功");
+        } else {
+            jsonResult.setSuccess(false);
+            jsonResult.setError("用户添加失败");
+        }
+        log.debug("[insert] [isAddUser]: " + isAddUser);
+        return jsonResult;
+    }
+
+    @ResponseBody
+    @RequestMapping("/updateUser")
+    public JsonResult<String> update(@RequestBody UserDO userDO) {
+        JsonResult<String> jsonResult = new JsonResult<String>();
+        Boolean isUpdateUser = userService.updateUser(userDO);
+        if (isUpdateUser) {
+            jsonResult.setSuccess(true);
+            jsonResult.setResult("用户更新成功");
+        } else {
+            jsonResult.setSuccess(false);
+            jsonResult.setError("用户更新失败");
+        }
+        log.debug("[update] [isUpdateUser]: " + isUpdateUser);
+        return jsonResult;
+    }
+
+    @ResponseBody
+    @RequestMapping("/deleteUser")
+    public JsonResult<String> delete(@RequestBody UserDO userDO) {
+        JsonResult<String> jsonResult = new JsonResult<String>();
+        Boolean isDeleteUser = userService.deleteUser(userDO);
+        if (isDeleteUser) {
+            jsonResult.setSuccess(true);
+            jsonResult.setResult("用户删除成功");
+        } else {
+            jsonResult.setSuccess(false);
+            jsonResult.setError("用户删除失败");
+        }
+        log.debug("[delete] [isDeleteUser]: " + isDeleteUser);
+        return jsonResult;
     }
 
     /**
-     * 进入登录页面
-     *
-     * @return the string
-     */
-    @RequestMapping("/login")
-    public String userLogin() {
-        return "Login";
-    }
-
-    /**
-     * 用户的
+     * 用户登录
      *
      * @param userDO the user do
      * @return the object
@@ -96,9 +150,7 @@ public class UserController {
             jsonResult.setError("其他错误");
             return jsonResult;
         }
-        /**
-         * 登录成功封装用户信息
-         */
+        // 封装用户信息
         UserSuccessVO userSuccessVO = new UserSuccessVO();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         userSuccessVO.setUserName(userDO.getUserName());
@@ -106,12 +158,11 @@ public class UserController {
         JsonResult<UserSuccessVO> objectJsonResult = new JsonResult<UserSuccessVO>();
         objectJsonResult.setSuccess(true);
         objectJsonResult.setResult(userSuccessVO);
-
         return objectJsonResult;
     }
 
     /**
-     * User sign out json result.
+     * 用户注销
      *
      * @return the json result
      */
@@ -124,37 +175,6 @@ public class UserController {
         jsonResult.setSuccess(true);
         jsonResult.setResult("注销成功");
         return jsonResult;
-    }
-
-    @ResponseBody
-    @RequestMapping("/getUser")
-    public JsonResult<List<UserDO>> getUsers(String id) {
-        JsonResult<List<UserDO>> jsonResult = new JsonResult<List<UserDO>>();
-        UserDO userDO = new UserDO();
-        if (id != null) {
-            userDO.setId(new Integer(id));
-        }
-        jsonResult.setSuccess(true);
-        jsonResult.setResult(userService.findListUser(userDO));
-        return jsonResult;
-    }
-
-
-    /**
-     * 用户注册
-     *
-     * @param userDO the user do
-     * @return the string
-     */
-    @RequestMapping("/userSignUp")
-    public String userSignUp(@RequestBody UserDO userDO) {
-        if (userDO != null) {
-            ByteSource salt = ByteSource.Util.bytes(userDO.getUserName());
-            SimpleHash simpleHashPassword = new SimpleHash("md5", userDO.getUserPassword(), salt, 2);
-            userDO.setUserPassword(simpleHashPassword.toString());
-        }
-        Boolean isInsertUser = userService.insertUser(userDO);
-        return isInsertUser ? "Login" : "SignUp";
     }
 
     /**

@@ -24,10 +24,6 @@ public class UserServiceImpl implements UserService {
     }
 
     public Boolean insertUser(UserDO u) {
-        List<UserDO> userDOList = userDao.select(u);
-        if (userDOList.size() > 0) {
-            return false;
-        }
         return userDao.insert(u);
     }
 
