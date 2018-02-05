@@ -12,6 +12,7 @@ public class RoleDO {
     private String roleName;
     private Date gmtCreate;
     private Date gmtModified;
+    private String roleDesc;
 
     public Integer getId() {
         return id;
@@ -52,6 +53,16 @@ public class RoleDO {
                 ", roleName='" + roleName + '\'' +
                 ", gmtCreate=" + gmtCreate +
                 ", gmtModified=" + gmtModified +
+                ", roleDesc='" + roleDesc + '\'' +
                 '}';
     }
+
+    public String getRoleDesc() {
+        return roleDesc;
+    }
+
+    public void setRoleDesc(String roleDesc) {
+        this.roleDesc = roleDesc;
+    }
+
 }
