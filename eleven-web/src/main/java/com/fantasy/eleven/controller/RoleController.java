@@ -55,7 +55,7 @@ public class RoleController implements BaseOperationController<RoleDO> {
             jsonResult.setSuccess(true);
             jsonResult.setResult("角色添加成功");
         } else {
-            isRoles = true;
+            isRoles = false;
             jsonResult.setSuccess(false);
             jsonResult.setError("角色添加失败");
         }

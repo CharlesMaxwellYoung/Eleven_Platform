@@ -13,6 +13,7 @@ public class PermissionDO {
     private Integer roleId;
     private Date gmtCreate;
     private Date gmtModified;
+    private String permissionDesc;
 
     public Integer getId() {
         return id;
@@ -54,6 +55,14 @@ public class PermissionDO {
         this.gmtModified = gmtModified;
     }
 
+    public String getPermissionDesc() {
+        return permissionDesc;
+    }
+
+    public void setPermissionDesc(String permissionDesc) {
+        this.permissionDesc = permissionDesc;
+    }
+
     @Override
     public String toString() {
         return "PermissionDO{" +
@@ -62,6 +71,7 @@ public class PermissionDO {
                 ", roleId=" + roleId +
                 ", gmtCreate=" + gmtCreate +
                 ", gmtModified=" + gmtModified +
+                ", permissionDesc='" + permissionDesc + '\'' +
                 '}';
     }
 }
