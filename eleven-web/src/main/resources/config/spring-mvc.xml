@@ -29,8 +29,8 @@
     </bean>
 
     <!-- 避免IE在ajax请求时，返回json出现下载 -->
-    <bean id="jacksonMessageConverter"
-          class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+    <bean id="fastJsonHttpMessageConverter"
+          class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
         <property name="supportedMediaTypes">
             <list>
                 <value>text/html;charset=UTF-8</value>
@@ -48,7 +48,7 @@
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
         <property name="messageConverters">
             <list>
-                <ref bean="jacksonMessageConverter"/>
+                <ref bean="fastJsonHttpMessageConverter"/>
                 <!-- json转换器 -->
             </list>
         </property>

@@ -23,6 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Fantasy on 2018/1/20.
@@ -205,6 +206,16 @@ public class UserController implements BaseOperationController<UserDO> {
         userSuccessVO.setIpAddress(SystemUtils.getSystemIpAddress(request));
         userSuccessVO.setUserRolePermsCounts(userRolePerms);
         jsonResult.setResult(userSuccessVO);
+        return jsonResult;
+    }
+
+    @ResponseBody
+    @RequestMapping("/roleNameByUserName")
+    public JsonResult<Set<String>> getRoleNameByUserName(String userName) {
+        Set<String> rolesStringSet = userService.getRolesByUserName(userName);
+        JsonResult<Set<String>> jsonResult = new JsonResult<Set<String>>();
+        jsonResult.setSuccess(true);
+        jsonResult.setResult(rolesStringSet);
         return jsonResult;
     }
 }

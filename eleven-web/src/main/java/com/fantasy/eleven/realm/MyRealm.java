@@ -28,6 +28,12 @@ public class MyRealm extends AuthorizingRealm {
 
     private static Logger log = Logger.getLogger(MyRealm.class);
 
+    /**
+     * 用于权限验证
+     *
+     * @param principalCollection
+     * @return
+     */
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         String userName = principalCollection.getPrimaryPrincipal().toString();
         log.debug("[doGetAuthorizationInfo] [username]" + userName);
@@ -41,12 +47,20 @@ public class MyRealm extends AuthorizingRealm {
         return info;
     }
 
+    /**
+     * 用于登陆验证
+     *
+     * @param authenticationToken
+     * @return
+     * @throws AuthenticationException
+     */
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         String userName = (String) authenticationToken.getPrincipal();
         UserDO userDO = new UserDO();
         userDO.setUserName(userName);
         List<UserDO> userDOList = userService.findListUser(userDO);
         UserDO userFirstModel = userDOList.get(0);
+        String pubToken = "m94oOLawLKA6Fai0jowy4vmlOvyvijoBF5iknKX4XbMPSfHw7XldUrJDQGTZijvotXDYopUBk9quq20DVh0Pn5NDGPYMAMBpuWo";
         if (userFirstModel != null) {
             ByteSource salt = ByteSource.Util.bytes(userFirstModel.getUserName());
             AuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(userFirstModel.getUserName(), userFirstModel.getUserPassword(), salt, this.getName());

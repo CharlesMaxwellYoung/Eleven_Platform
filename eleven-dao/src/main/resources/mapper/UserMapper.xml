@@ -36,7 +36,7 @@
                 ,user_show_name=#{userShowName}
             </if>
             <if test="userDesc!=null and userDesc!='' and userDesc!='null'">,user_desc=#{userDesc}</if>
-            <if test="roleId!=null and roleId!='' and roleId!='null'">,role_id=#{roleId}</if>
+            <if test="roleId!= null and roleId !='' ">,role_id=#{roleId}</if>
         </trim>
         WHERE id=#{id} ;
     </update>
@@ -44,4 +44,9 @@
     <delete id="delete">
         DELETE FROM t_user WHERE id=#{id}
     </delete>
+
+    <select id="getRolesByUserName" resultType="String">
+        SELECT r.role_name FROM t_user u,t_role r WHERE r.id=u.role_id AND u.user_name =#{userName}
+    </select>
+
 </mapper>
