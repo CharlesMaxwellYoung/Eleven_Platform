@@ -1,9 +1,11 @@
 package com.fantasy.eleven.dao;
 
 import com.fantasy.eleven.dao.base.BaseDao;
+import com.fantasy.eleven.model.PermissionDO;
 import com.fantasy.eleven.model.UserDO;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -36,4 +38,14 @@ public interface UserDao extends BaseDao<UserDO> {
      * @return the integer
      */
     Integer userCount();
+
+
+    /**
+     * Gets permission by role id.
+     *
+     * @param roleId the role id
+     * @return the permission by role id
+     */
+    List<PermissionDO> getPermissionByRoleId(Integer roleId);
+
 }

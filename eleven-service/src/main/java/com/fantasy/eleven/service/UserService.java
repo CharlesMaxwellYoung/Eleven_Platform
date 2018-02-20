@@ -1,5 +1,6 @@
 package com.fantasy.eleven.service;
 
+import com.fantasy.eleven.model.PermissionDO;
 import com.fantasy.eleven.model.UserDO;
 
 import java.util.List;
@@ -65,4 +66,12 @@ public interface UserService {
      * @return the integer
      */
     Integer userCount();
+
+    /**
+     * Gets permission by role id.
+     *
+     * @param roleId the role id
+     * @return the permission by role id
+     */
+    List<PermissionDO> getPermissionByRoleId(Integer roleId);
 }

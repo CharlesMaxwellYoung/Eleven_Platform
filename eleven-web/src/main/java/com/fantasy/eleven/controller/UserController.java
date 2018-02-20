@@ -1,6 +1,7 @@
 package com.fantasy.eleven.controller;
 
 import com.fantasy.eleven.basecontroller.BaseOperationController;
+import com.fantasy.eleven.model.PermissionDO;
 import com.fantasy.eleven.model.UserDO;
 import com.fantasy.eleven.service.PermissionService;
 import com.fantasy.eleven.service.RoleService;
@@ -209,6 +210,12 @@ public class UserController implements BaseOperationController<UserDO> {
         return jsonResult;
     }
 
+    /**
+     * Gets role name by user name.
+     *
+     * @param userName the user name
+     * @return the role name by user name
+     */
     @ResponseBody
     @RequestMapping("/roleNameByUserName")
     public JsonResult<Set<String>> getRoleNameByUserName(String userName) {
@@ -216,6 +223,22 @@ public class UserController implements BaseOperationController<UserDO> {
         JsonResult<Set<String>> jsonResult = new JsonResult<Set<String>>();
         jsonResult.setSuccess(true);
         jsonResult.setResult(rolesStringSet);
+        return jsonResult;
+    }
+
+    /**
+     * Gets role name by user name.
+     *
+     * @param roleId the role id
+     * @return the role name by user name
+     */
+    @ResponseBody
+    @RequestMapping("/getPermissionByRoleId")
+    public JsonResult<List<PermissionDO>> getPermissionByRoleId(Integer roleId) {
+        List<PermissionDO> permissionDOList = userService.getPermissionByRoleId(roleId);
+        JsonResult<List<PermissionDO>> jsonResult = new JsonResult<List<PermissionDO>>();
+        jsonResult.setSuccess(true);
+        jsonResult.setResult(permissionDOList);
         return jsonResult;
     }
 }

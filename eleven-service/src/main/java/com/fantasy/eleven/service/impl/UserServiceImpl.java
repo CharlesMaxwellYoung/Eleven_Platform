@@ -1,6 +1,7 @@
 package com.fantasy.eleven.service.impl;
 
 import com.fantasy.eleven.dao.UserDao;
+import com.fantasy.eleven.model.PermissionDO;
 import com.fantasy.eleven.model.UserDO;
 import com.fantasy.eleven.service.UserService;
 import org.springframework.stereotype.Service;
@@ -45,5 +46,9 @@ public class UserServiceImpl implements UserService {
 
     public Integer userCount() {
         return userDao.userCount();
+    }
+
+    public List<PermissionDO> getPermissionByRoleId(Integer roleId) {
+        return userDao.getPermissionByRoleId(roleId);
     }
 }
