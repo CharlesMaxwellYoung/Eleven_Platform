@@ -1,6 +1,7 @@
 package com.fantasy.eleven.service;
 
 import com.fantasy.eleven.model.PermissionDO;
+import com.fantasy.eleven.model.RolePermsLinkDO;
 import com.fantasy.eleven.model.UserDO;
 
 import java.util.List;
@@ -74,4 +75,20 @@ public interface UserService {
      * @return the permission by role id
      */
     List<PermissionDO> getPermissionByRoleId(Integer roleId);
+
+    /**
+     * Delete role perms by role id integer.
+     *
+     * @param roleId the role id
+     * @return the integer
+     */
+    Boolean deleteRolePermsByRoleId(Integer roleId);
+
+    /**
+     * Insert role perms link integer.
+     *
+     * @param rolePermsLinkDO the role perms link do
+     * @return the integer
+     */
+    Boolean insertRolePermsLink(RolePermsLinkDO rolePermsLinkDO);
 }

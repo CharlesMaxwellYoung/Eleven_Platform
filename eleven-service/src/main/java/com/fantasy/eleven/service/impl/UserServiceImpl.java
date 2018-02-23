@@ -2,6 +2,7 @@ package com.fantasy.eleven.service.impl;
 
 import com.fantasy.eleven.dao.UserDao;
 import com.fantasy.eleven.model.PermissionDO;
+import com.fantasy.eleven.model.RolePermsLinkDO;
 import com.fantasy.eleven.model.UserDO;
 import com.fantasy.eleven.service.UserService;
 import org.springframework.stereotype.Service;
@@ -50,5 +51,13 @@ public class UserServiceImpl implements UserService {
 
     public List<PermissionDO> getPermissionByRoleId(Integer roleId) {
         return userDao.getPermissionByRoleId(roleId);
+    }
+
+    public Boolean deleteRolePermsByRoleId(Integer roleId) {
+        return userDao.deleteRolePermsByRoleId(roleId);
+    }
+
+    public Boolean insertRolePermsLink(RolePermsLinkDO rolePermsLinkDO) {
+        return userDao.insertRolePermsLink(rolePermsLinkDO);
     }
 }

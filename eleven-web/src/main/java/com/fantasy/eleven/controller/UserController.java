@@ -2,6 +2,7 @@ package com.fantasy.eleven.controller;
 
 import com.fantasy.eleven.basecontroller.BaseOperationController;
 import com.fantasy.eleven.model.PermissionDO;
+import com.fantasy.eleven.model.RolePermsLinkDO;
 import com.fantasy.eleven.model.UserDO;
 import com.fantasy.eleven.service.PermissionService;
 import com.fantasy.eleven.service.RoleService;
@@ -239,6 +240,20 @@ public class UserController implements BaseOperationController<UserDO> {
         JsonResult<List<PermissionDO>> jsonResult = new JsonResult<List<PermissionDO>>();
         jsonResult.setSuccess(true);
         jsonResult.setResult(permissionDOList);
+        return jsonResult;
+    }
+
+    @ResponseBody
+    @RequestMapping("/updatePermissionLink")
+    public JsonResult<String> updatePermissionLink(RolePermsLinkDO rolePermsLinkDO) {
+        JsonResult<String> jsonResult = new JsonResult<String>();
+        Boolean isDelRoleId = userService.deleteRolePermsByRoleId(rolePermsLinkDO.getId());
+        Boolean isInsertRolePerms = false;
+        if (isDelRoleId) {
+            isInsertRolePerms = userService.insertRolePermsLink(rolePermsLinkDO);
+        }
+        jsonResult.setSuccess(isInsertRolePerms);
+        jsonResult.setResult(isInsertRolePerms ? "添加成功" : "添加失败");
         return jsonResult;
     }
 }

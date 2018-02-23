@@ -62,14 +62,26 @@
         AND u.user_name=#{userName}
     </select>
 
-    <select id="getPermissionByRoleId">
+    <select id="getPermissionByRoleId" resultType="java.lang.Integer">
         SELECT
-        <include refid="permission_list_field"/>
+        tp.id,tp.permission_name
         FROM
         t_permission tp,t_role tr,t_role_perm_link trpl
         WHERE tp.id=trpl.permission_id
         AND tr.id=trpl.role_id
         AND tr.id=#{roleId}
     </select>
+
+    <delete id="deleteRolePermsByRoleId">
+        DELETE FROM t_role_perm_link WHERE role_id=#{roleId}
+    </delete>
+
+    <insert id="insertRolePermsLink">
+        INSERT
+        ignore
+        INTO
+        t_role_perm_link (gmt_create,gmt_modified,role_id,permission_id)
+        VALUE (CURRENT_TIME,CURRENT_TIME,#{roleId},#{permissionId})
+    </insert>
 
 </mapper>

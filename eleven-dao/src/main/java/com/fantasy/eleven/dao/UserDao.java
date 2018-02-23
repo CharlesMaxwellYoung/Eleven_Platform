@@ -2,6 +2,7 @@ package com.fantasy.eleven.dao;
 
 import com.fantasy.eleven.dao.base.BaseDao;
 import com.fantasy.eleven.model.PermissionDO;
+import com.fantasy.eleven.model.RolePermsLinkDO;
 import com.fantasy.eleven.model.UserDO;
 import org.springframework.stereotype.Repository;
 
@@ -47,5 +48,22 @@ public interface UserDao extends BaseDao<UserDO> {
      * @return the permission by role id
      */
     List<PermissionDO> getPermissionByRoleId(Integer roleId);
+
+    /**
+     * Delete role perms by role id integer.
+     *
+     * @param roleId the role id
+     * @return the integer
+     */
+    Boolean deleteRolePermsByRoleId(Integer roleId);
+
+
+    /**
+     * Insert role perms link integer.
+     *
+     * @param rolePermsLinkDO the role perms link do
+     * @return the integer
+     */
+    Boolean insertRolePermsLink(RolePermsLinkDO rolePermsLinkDO);
 
 }
