@@ -76,12 +76,15 @@
         DELETE FROM t_role_perm_link WHERE role_id=#{roleId}
     </delete>
 
-    <insert id="insertRolePermsLink">
+    <insert id="insertRolePermsLink" parameterType="java.util.List">
         INSERT
         ignore
         INTO
         t_role_perm_link (gmt_create,gmt_modified,role_id,permission_id)
-        VALUE (CURRENT_TIME,CURRENT_TIME,#{roleId},#{permissionId})
+        VALUES
+        <foreach collection="list" item="rolePerms" index="index" separator=",">
+            (CURRENT_TIME,CURRENT_TIME,#{rolePerms.roleId},#{rolePerms.permissionId})
+        </foreach>
     </insert>
 
 </mapper>

@@ -3,6 +3,7 @@ package com.fantasy.eleven.service;
 import com.fantasy.eleven.model.PermissionDO;
 import com.fantasy.eleven.model.RolePermsLinkDO;
 import com.fantasy.eleven.model.UserDO;
+import com.fantasy.eleven.vo.RolePermsLinkVO;
 
 import java.util.List;
 import java.util.Set;
@@ -87,8 +88,8 @@ public interface UserService {
     /**
      * Insert role perms link integer.
      *
-     * @param rolePermsLinkDO the role perms link do
+     * @param rolePermsLinkVO the role perms link do
      * @return the integer
      */
-    Boolean insertRolePermsLink(RolePermsLinkDO rolePermsLinkDO);
+    Boolean insertRolePermsLink(RolePermsLinkVO rolePermsLinkVO);
 }

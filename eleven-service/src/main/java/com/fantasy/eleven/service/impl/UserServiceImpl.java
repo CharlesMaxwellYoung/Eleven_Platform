@@ -5,9 +5,11 @@ import com.fantasy.eleven.model.PermissionDO;
 import com.fantasy.eleven.model.RolePermsLinkDO;
 import com.fantasy.eleven.model.UserDO;
 import com.fantasy.eleven.service.UserService;
+import com.fantasy.eleven.vo.RolePermsLinkVO;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -57,7 +59,16 @@ public class UserServiceImpl implements UserService {
         return userDao.deleteRolePermsByRoleId(roleId);
     }
 
-    public Boolean insertRolePermsLink(RolePermsLinkDO rolePermsLinkDO) {
-        return userDao.insertRolePermsLink(rolePermsLinkDO);
+    public Boolean insertRolePermsLink(RolePermsLinkVO rolePermsLinkVO) {
+        List<Integer> permissionIds = rolePermsLinkVO.getPermissionIds();
+        List<RolePermsLinkDO> rolePermsLinkDOList = new ArrayList<RolePermsLinkDO>();
+        RolePermsLinkDO rolePermsLinkDO;
+        for (Integer permsId : permissionIds) {
+            rolePermsLinkDO = new RolePermsLinkDO();
+            rolePermsLinkDO.setPermissionId(permsId);
+            rolePermsLinkDO.setRoleId(rolePermsLinkVO.getRoleId());
+            rolePermsLinkDOList.add(rolePermsLinkDO);
+        }
+        return userDao.insertRolePermsLink(rolePermsLinkDOList);
     }
 }

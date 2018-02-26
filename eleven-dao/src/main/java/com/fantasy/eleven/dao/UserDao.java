@@ -4,6 +4,7 @@ import com.fantasy.eleven.dao.base.BaseDao;
 import com.fantasy.eleven.model.PermissionDO;
 import com.fantasy.eleven.model.RolePermsLinkDO;
 import com.fantasy.eleven.model.UserDO;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -61,9 +62,9 @@ public interface UserDao extends BaseDao<UserDO> {
     /**
      * Insert role perms link integer.
      *
-     * @param rolePermsLinkDO the role perms link do
+     * @param rolePermsList the role perms link do
      * @return the integer
      */
-    Boolean insertRolePermsLink(RolePermsLinkDO rolePermsLinkDO);
+    Boolean insertRolePermsLink(List<RolePermsLinkDO> rolePermsList);
 
 }

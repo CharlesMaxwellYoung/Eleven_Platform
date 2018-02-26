@@ -9,6 +9,7 @@ import com.fantasy.eleven.service.RoleService;
 import com.fantasy.eleven.service.UserService;
 import com.fantasy.eleven.utils.SystemUtils;
 import com.fantasy.eleven.vo.JsonResult;
+import com.fantasy.eleven.vo.RolePermsLinkVO;
 import com.fantasy.eleven.vo.UserSuccessVO;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
@@ -243,15 +244,19 @@ public class UserController implements BaseOperationController<UserDO> {
         return jsonResult;
     }
 
+    /**
+     * Update permission link json result.
+     *
+     * @param rolePermsLinkVO the role perms link do
+     * @return the json result
+     */
     @ResponseBody
     @RequestMapping("/updatePermissionLink")
-    public JsonResult<String> updatePermissionLink(RolePermsLinkDO rolePermsLinkDO) {
+    public JsonResult<String> updatePermissionLink(@RequestBody RolePermsLinkVO rolePermsLinkVO) {
         JsonResult<String> jsonResult = new JsonResult<String>();
-        Boolean isDelRoleId = userService.deleteRolePermsByRoleId(rolePermsLinkDO.getId());
-        Boolean isInsertRolePerms = false;
-        if (isDelRoleId) {
-            isInsertRolePerms = userService.insertRolePermsLink(rolePermsLinkDO);
-        }
+        userService.deleteRolePermsByRoleId(rolePermsLinkVO.getRoleId());
+        Boolean isInsertRolePerms;
+        isInsertRolePerms = userService.insertRolePermsLink(rolePermsLinkVO);
         jsonResult.setSuccess(isInsertRolePerms);
         jsonResult.setResult(isInsertRolePerms ? "添加成功" : "添加失败");
         return jsonResult;
