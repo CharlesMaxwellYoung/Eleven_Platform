@@ -1,0 +1,49 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <parent>
+        <artifactId>eleven.root</artifactId>
+        <groupId>com.fantasy</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>eleven-web</artifactId>
+    <packaging>war</packaging>
+    <name>eleven-web Maven Webapp</name>
+    <url>http://maven.apache.org</url>
+    <dependencies>
+        <!--添加对eleven-utils的依赖-->
+        <dependency>
+            <groupId>com.fantasy</groupId>
+            <artifactId>eleven-common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <!--添加对eleven-model的依赖-->
+        <dependency>
+            <groupId>com.fantasy</groupId>
+            <artifactId>eleven-model</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <!--添加对eleven-dao的依赖-->
+        <dependency>
+            <groupId>com.fantasy</groupId>
+            <artifactId>eleven-dao</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <!--添加对eleven-service的依赖-->
+        <dependency>
+            <groupId>com.fantasy</groupId>
+            <artifactId>eleven-service</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <!--添加对junit的依赖-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <finalName>eleven-web</finalName>
+    </build>
+</project>
