@@ -245,7 +245,7 @@ public class UserController implements BaseOperationController<UserDO> {
     }
 
     /**
-     * Update permission link json result.
+     * 更新权限
      *
      * @param rolePermsLinkVO the role perms link do
      * @return the json result
