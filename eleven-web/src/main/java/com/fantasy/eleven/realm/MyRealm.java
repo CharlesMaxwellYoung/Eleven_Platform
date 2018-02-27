@@ -1,5 +1,6 @@
 package com.fantasy.eleven.realm;
 
+import com.fantasy.eleven.dto.CommonConfig;
 import com.fantasy.eleven.model.UserDO;
 import com.fantasy.eleven.service.UserService;
 import org.apache.log4j.Logger;
@@ -61,6 +62,8 @@ public class MyRealm extends AuthorizingRealm {
         List<UserDO> userDOList = userService.findListUser(userDO);
         UserDO userFirstModel = userDOList.get(0);
         String pubToken = "m94oOLawLKA6Fai0jowy4vmlOvyvijoBF5iknKX4XbMPSfHw7XldUrJDQGTZijvotXDYopUBk9quq20DVh0Pn5NDGPYMAMBpuWo";
+        CommonConfig commonConfig = new CommonConfig();
+        System.out.println(commonConfig.getPubToken());
         if (userFirstModel != null) {
             ByteSource salt = ByteSource.Util.bytes(userFirstModel.getUserName());
             AuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(userFirstModel.getUserName(), userFirstModel.getUserPassword(), salt, this.getName());
