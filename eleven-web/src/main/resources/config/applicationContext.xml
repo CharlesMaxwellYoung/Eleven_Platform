@@ -19,13 +19,6 @@
     <!-- 自动将Service层注入-->
     <context:component-scan base-package="com.fantasy.eleven.service"/>
 
-    <bean id="prop" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
-        <property name="locations">
-            <array>
-                <value>classpath:config/common.properties</value>
-            </array>
-        </property>
-    </bean>
     <!-- dbcp数据源 -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init"
           destroy-method="close">
