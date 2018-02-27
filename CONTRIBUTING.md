@@ -60,8 +60,7 @@
   - **type**
 
     > 用于说明 commit 的类别，只允许使用下面7个标识。
-
-    ```
+    ```html
     feat：新功能（feature）
     fix：修补bug
     docs：文档（documentation）
@@ -70,8 +69,24 @@
     test：增加测试
     chore：构建过程或辅助工具的变动
     ```
+    > 或者采用emoji表情来标识提交类型
 
-  - **scope**
+    `feat`----->:sparkles:`星星代码（:sparkles:）`
+
+    `fix`------>:bug:`bug代码（:bug:）`
+
+    `docs`------>:memo:`memo代码（:memo:）`
+
+    `style`------>:art:`art代码（:art:）`
+
+    `refactor`------>:hammer:`hammer代码（:hammer:）`
+
+    `test`------>:white_check_mark:`white_check_mark代码（:white_check_mark:）`
+
+    `chore`------>:green_heart:`green_heart代码（:green_heart:）`
+    ​
+    更多的表情提交规范可以参照：[emoji 表情指南](http://www.techug.com/post/github-emoji-usage-tips.html)
+  - scope**
 
     > 用于说明 commit 影响的范围，比如数据层、控制层、视图层等等，视项目不同而不同。
 

@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/eleven.iml" filepath="$PROJECT_DIR$/eleven.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eleven-common/eleven-common.iml" filepath="$PROJECT_DIR$/eleven-common/eleven-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/eleven-dao/eleven-dao.iml" filepath="$PROJECT_DIR$/eleven-dao/eleven-dao.iml" />
       <module fileurl="file://$PROJECT_DIR$/eleven-model/eleven-model.iml" filepath="$PROJECT_DIR$/eleven-model/eleven-model.iml" />
       <module fileurl="file://$PROJECT_DIR$/eleven-service/eleven-service.iml" filepath="$PROJECT_DIR$/eleven-service/eleven-service.iml" />

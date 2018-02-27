@@ -13,6 +13,12 @@
     <packaging>jar</packaging>
 
     <dependencies>
+        <!--添加对mytest-utils的依赖-->
+        <dependency>
+            <groupId>com.fantasy</groupId>
+            <artifactId>eleven-common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
         <!--添加对mytest-model的依赖-->
         <dependency>
             <groupId>com.fantasy</groupId>

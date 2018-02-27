@@ -1,6 +1,9 @@
 package com.fantasy.eleven.service;
 
-import com.fantasy.eleven.model.UserModel;
+import com.fantasy.eleven.model.PermissionDO;
+import com.fantasy.eleven.model.RolePermsLinkDO;
+import com.fantasy.eleven.model.UserDO;
+import com.fantasy.eleven.vo.RolePermsLinkVO;
 
 import java.util.List;
 import java.util.Set;
@@ -12,12 +15,36 @@ import java.util.Set;
  */
 public interface UserService {
     /**
-     * Find all student list.
+     * Find list user list.
      *
      * @param u the u
      * @return the list
      */
-    List<UserModel> findAllStudent(UserModel u);
+    List<UserDO> findListUser(UserDO u);
+
+    /**
+     * Insert user boolean.
+     *
+     * @param u the u
+     * @return the boolean
+     */
+    Boolean insertUser(UserDO u);
+
+    /**
+     * Update user boolean.
+     *
+     * @param u the u
+     * @return the boolean
+     */
+    Boolean updateUser(UserDO u);
+
+    /**
+     * Delete user boolean.
+     *
+     * @param u the u
+     * @return the boolean
+     */
+    Boolean deleteUser(UserDO u);
 
     /**
      * Gets roles by user name.
@@ -36,10 +63,33 @@ public interface UserService {
     Set<String> getPermissionsByUserName(String userName);
 
     /**
-     * Gets user by user name.
+     * User count integer.
      *
-     * @param userName the user name
-     * @return the user by user name
+     * @return the integer
      */
-    UserModel getUserByUserName(String userName);
+    Integer userCount();
+
+    /**
+     * Gets permission by role id.
+     *
+     * @param roleId the role id
+     * @return the permission by role id
+     */
+    List<PermissionDO> getPermissionByRoleId(Integer roleId);
+
+    /**
+     * Delete role perms by role id integer.
+     *
+     * @param roleId the role id
+     * @return the integer
+     */
+    Boolean deleteRolePermsByRoleId(Integer roleId);
+
+    /**
+     * Insert role perms link integer.
+     *
+     * @param rolePermsLinkVO the role perms link do
+     * @return the integer
+     */
+    Boolean insertRolePermsLink(RolePermsLinkVO rolePermsLinkVO);
 }

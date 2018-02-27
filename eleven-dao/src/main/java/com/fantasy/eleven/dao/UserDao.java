@@ -1,8 +1,13 @@
 package com.fantasy.eleven.dao;
 
-import com.fantasy.eleven.model.UserModel;
+import com.fantasy.eleven.dao.base.BaseDao;
+import com.fantasy.eleven.model.PermissionDO;
+import com.fantasy.eleven.model.RolePermsLinkDO;
+import com.fantasy.eleven.model.UserDO;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -11,15 +16,7 @@ import java.util.Set;
  * @author yy
  */
 @Repository
-public interface UserDao extends BaseDao<UserModel> {
-    /**
-     * Gets user by user name.
-     *
-     * @param userName the user name
-     * @return the user by user name
-     */
-    UserModel getUserByUserName(String userName);
-
+public interface UserDao extends BaseDao<UserDO> {
     /**
      * Gets roles by user name.
      *
@@ -35,4 +32,39 @@ public interface UserDao extends BaseDao<UserModel> {
      * @return the permissions by user name
      */
     Set<String> getPermissionsByUserName(String userName);
+
+
+    /**
+     * User count integer.
+     *
+     * @return the integer
+     */
+    Integer userCount();
+
+
+    /**
+     * Gets permission by role id.
+     *
+     * @param roleId the role id
+     * @return the permission by role id
+     */
+    List<PermissionDO> getPermissionByRoleId(Integer roleId);
+
+    /**
+     * Delete role perms by role id integer.
+     *
+     * @param roleId the role id
+     * @return the integer
+     */
+    Boolean deleteRolePermsByRoleId(Integer roleId);
+
+
+    /**
+     * Insert role perms link integer.
+     *
+     * @param rolePermsList the role perms link do
+     * @return the integer
+     */
+    Boolean insertRolePermsLink(List<RolePermsLinkDO> rolePermsList);
+
 }
