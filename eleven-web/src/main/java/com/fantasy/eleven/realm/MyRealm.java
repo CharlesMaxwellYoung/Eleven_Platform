@@ -62,8 +62,7 @@ public class MyRealm extends AuthorizingRealm {
         List<UserDO> userDOList = userService.findListUser(userDO);
         UserDO userFirstModel = userDOList.get(0);
         String pubToken = "m94oOLawLKA6Fai0jowy4vmlOvyvijoBF5iknKX4XbMPSfHw7XldUrJDQGTZijvotXDYopUBk9quq20DVh0Pn5NDGPYMAMBpuWo";
-        CommonConfig commonConfig = new CommonConfig();
-        System.out.println(commonConfig.getPubToken());
+        System.out.println(pubToken);
         if (userFirstModel != null) {
             ByteSource salt = ByteSource.Util.bytes(userFirstModel.getUserName());
             AuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(userFirstModel.getUserName(), userFirstModel.getUserPassword(), salt, this.getName());

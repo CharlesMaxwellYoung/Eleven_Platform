@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class CommonConfig {
-    @Value("${id_token.pub}")
+    @Value("${config.isa_key}")
     private String pubToken;
 
     public String getPubToken() {

@@ -7,7 +7,10 @@
          version="3.1">
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:config/applicationContext.xml</param-value>
+        <param-value>
+            classpath:spring/spring-dao.xml,
+            classpath:spring/spring-shiro.xml
+        </param-value>
     </context-param>
     <context-param>
         <param-name>log4jConfigLocation</param-name>
@@ -45,7 +48,7 @@
         <init-param>
             <param-name>contextConfigLocation</param-name>
             <param-value>
-                classpath:config/spring-mvc.xml
+                classpath:spring/spring-mvc.xml
             </param-value>
         </init-param>
         <load-on-startup>2</load-on-startup>
