@@ -18,7 +18,7 @@ import java.util.List;
  * @author Fantasy
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath*:config/applicationContext.xml")
+@ContextConfiguration(locations = "classpath*:spring/spring-dao.xml")
 public class DaoTest {
     private static Logger log = Logger.getLogger(MyRealm.class);
     @Resource

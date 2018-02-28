@@ -16,7 +16,7 @@ import java.util.List;
  * @author Fantasy
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath*:config/applicationContext.xml")
+@ContextConfiguration(locations = "classpath*:spring/spring-dao.xml")
 public class ServiceTest {
     @Resource
     private UserService userService;

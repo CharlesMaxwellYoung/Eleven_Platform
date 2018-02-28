@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author Fantasy
  */
-public abstract class SystemUtils {
+public final class SystemUtils {
     private static final String UNKNOWN_STR = "unknown";
 
     /**
