@@ -31,7 +31,7 @@ public class RequestThirdPartApiController {
             JSON.parse(responseEntity);
             jsonResult.setResult(responseEntity);
         }
-        return null;
+        return jsonResult;
     }
 
     private String pushApiKeyForUrls(String thirdPartUrls) {
