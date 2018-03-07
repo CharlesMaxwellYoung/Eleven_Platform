@@ -1,8 +1,8 @@
 package com.fantasy.eleven.controller;
 
 import com.fantasy.eleven.basecontroller.BaseOperationController;
+import com.fantasy.eleven.service.impl.CommonConfig;
 import com.fantasy.eleven.model.PermissionDO;
-import com.fantasy.eleven.model.RolePermsLinkDO;
 import com.fantasy.eleven.model.UserDO;
 import com.fantasy.eleven.service.PermissionService;
 import com.fantasy.eleven.service.RoleService;
@@ -44,6 +44,8 @@ public class UserController implements BaseOperationController<UserDO> {
     @Resource
     private PermissionService permissionService;
 
+    @Resource
+    private CommonConfig commonConfig;
 
     @ResponseBody
     @RequestMapping("/getUser")
@@ -66,7 +68,7 @@ public class UserController implements BaseOperationController<UserDO> {
         List<UserDO> userDOList = userService.findListUser(userDO);
         Boolean isAddUser = false;
         if (userDO != null) {
-            ByteSource salt = ByteSource.Util.bytes(userDO.getUserName());
+            ByteSource salt = ByteSource.Util.bytes(commonConfig.getIsaKey());
             SimpleHash simpleHashPassword = new SimpleHash("md5", userDO.getUserPassword(), salt, 2);
             userDO.setUserPassword(simpleHashPassword.toString());
         }

@@ -1,8 +1,8 @@
 package com.fantasy.eleven.realm;
 
-import com.fantasy.eleven.dto.CommonConfig;
 import com.fantasy.eleven.model.UserDO;
 import com.fantasy.eleven.service.UserService;
+import com.fantasy.eleven.service.impl.CommonConfig;
 import org.apache.log4j.Logger;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -26,6 +26,9 @@ import java.util.Set;
 public class MyRealm extends AuthorizingRealm {
     @Resource
     private UserService userService;
+
+    @Resource
+    private CommonConfig commonConfig;
 
     private static Logger log = Logger.getLogger(MyRealm.class);
 
@@ -61,10 +64,8 @@ public class MyRealm extends AuthorizingRealm {
         userDO.setUserName(userName);
         List<UserDO> userDOList = userService.findListUser(userDO);
         UserDO userFirstModel = userDOList.get(0);
-        String pubToken = "m94oOLawLKA6Fai0jowy4vmlOvyvijoBF5iknKX4XbMPSfHw7XldUrJDQGTZijvotXDYopUBk9quq20DVh0Pn5NDGPYMAMBpuWo";
-        System.out.println(pubToken);
         if (userFirstModel != null) {
-            ByteSource salt = ByteSource.Util.bytes(userFirstModel.getUserName());
+            ByteSource salt = ByteSource.Util.bytes(commonConfig.getIsaKey());
             AuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(userFirstModel.getUserName(), userFirstModel.getUserPassword(), salt, this.getName());
             log.debug("[doGetAuthenticationInfo] [authenticationInfo] " + authenticationInfo.toString());
             return authenticationInfo;

@@ -13,10 +13,19 @@
            http://www.springframework.org/schema/tx
            http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
-    <!-- jdbc配置 -->
-    <context:property-placeholder location="classpath:config/jdbc.properties"/>
-    <!-- 通用配置 -->
-    <context:property-placeholder location="classpath:config/appConfig.properties"/>
+
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <!-- jdbc配置 -->
+                <value>classpath:config/jdbc.properties</value>
+                <!-- 通用配置 -->
+                <value>classpath:config/appConfig.properties</value>
+            </list>
+        </property>
+    </bean>
+
+
     <!-- 自动将Service层注入-->
     <context:component-scan base-package="com.fantasy.eleven.service"/>
 

@@ -1,12 +1,15 @@
 package com.fantasy.eleven.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.fantasy.eleven.service.impl.CommonConfig;
 import com.fantasy.eleven.utils.RegexUtils;
 import com.fantasy.eleven.vo.JsonResult;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
+
+import javax.annotation.Resource;
 
 /**
  * Created by Fantasy on 2018/2/27.
@@ -18,6 +21,8 @@ import org.springframework.web.client.RestTemplate;
 public class RequestThirdPartApiController {
     private final static String DOUBAN_STR = "douban";
     private final static String JU_HE = "juhe";
+    @Resource
+    private CommonConfig commonConfig;
 
     @ResponseBody
     @RequestMapping("/getResult")
@@ -36,9 +41,9 @@ public class RequestThirdPartApiController {
 
     private String pushApiKeyForUrls(String thirdPartUrls) {
         if (thirdPartUrls.contains(DOUBAN_STR)) {
-            return thirdPartUrls + "?apikey=0b2bdeda43b5688921839c8ecb20399b";
+            return thirdPartUrls + "?apikey=" + commonConfig.getDoubanKey();
         } else if (thirdPartUrls.contains(JU_HE)) {
-            return thirdPartUrls + "?key=e797c5d6ccd36ae12f073ca69297c185";
+            return thirdPartUrls + "?key=" + commonConfig.getJuheKey();
         } else {
             return thirdPartUrls;
         }
