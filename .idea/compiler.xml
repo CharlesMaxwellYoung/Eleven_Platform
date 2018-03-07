@@ -13,14 +13,13 @@
         <module name="eleven-web" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="eleven" target="1.5" />
-      <module name="eleven-common" target="1.5" />
-      <module name="eleven-dao" target="1.5" />
-      <module name="eleven-model" target="1.5" />
-      <module name="eleven-service" target="1.5" />
-      <module name="eleven-utils" target="1.5" />
-      <module name="eleven-web" target="1.5" />
+    <bytecodeTargetLevel target="1.8">
+      <module name="eleven" target="1.8" />
+      <module name="eleven-common" target="1.8" />
+      <module name="eleven-dao" target="1.8" />
+      <module name="eleven-model" target="1.8" />
+      <module name="eleven-service" target="1.8" />
+      <module name="eleven-web" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

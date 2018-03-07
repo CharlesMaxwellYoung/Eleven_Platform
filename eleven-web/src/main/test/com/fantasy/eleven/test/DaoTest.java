@@ -38,6 +38,7 @@ public class DaoTest {
             log.info("[DaoTest] [select]" + s.getUserName());
             System.out.println("[DaoTest] [select]" + s.getUserName());
         }
+        userModelList.forEach(item -> System.out.println(item.toString()));
 
     }
 
